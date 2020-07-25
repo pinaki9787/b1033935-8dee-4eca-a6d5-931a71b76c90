@@ -1,0 +1,29 @@
+<div class="headerdiv">
+    <h1 class="header">
+        My Weather App
+      </h1>
+</div>
+<div  class="containerdiv">
+  <input type="text" placeholder = "Search City" ng-model = "cityInput" ng-keyup = "searchCity()" required>
+  <img src="models/searchicon.png">
+  <div class="container-weather" ng-if = "(displayCity)&&(cityInput)"> 
+      <div ng-repeat = "item in searchResponse">
+          <div class="each-city"  ng-click = "getcitydetails(item)">{{item.title}}</div>
+      </div>   
+    </div>
+</div>
+
+<div ng-if="displayWeather && weatherResponse" class="cityName">City : {{selectedCity.title}}</div>
+  <table ng-if = "displayWeather">   
+    <tr 
+    >
+        <td ng-repeat = "data in weatherResponse.consolidated_weather">
+          <h2 class="weather-date">{{data.applicable_date}}</h3>
+          <div>  <img src="https://www.metaweather.com/static/img/weather/{{data.weather_state_abbr}}.svg" class="img-state">{{data.weather_state_name}}</div>
+            <div>Max: {{((data.max_temp).toString()).split('.')[0]}}°C</div>   
+            <div>Min: {{((data.min_temp).toString()).split('.')[0]}}°C</div>
+            <div>Humidity: {{((data.min_temp).toString()).split('.')[0]}}%</div>
+       </td>
+       </tr>
+  </table>
+
